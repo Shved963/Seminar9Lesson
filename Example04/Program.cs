@@ -7,21 +7,35 @@
 
 
 using static Common.Helper;
-
+using System.Diagnostics;
 Console.Clear();
 
 int num = Common.Helper.IntoInt();
 int degree = Common.Helper.IntoInt();
 
-Console.WriteLine(GetExponentiation(num, degree));
+double result = 0;
 
-
-int GetExponentiation(int num1, int num2, int i = 0)
+Stopwatch watch = new Stopwatch();
+watch.Start();
+//Thread.Sleep(1000);
+for (int i = 0; i< 1000000; i++)
 {
+    result = GetExponentiation(num, degree);
+}
+watch.Stop();
+
+Console.WriteLine(watch.ElapsedMilliseconds);
+Console.WriteLine(result);
+
+
+double GetExponentiation(int num1, int num2, int i = 0)
+{
+    
     if (i == num2)
     {
         return 1;
     }
+    
 
     return num1 * GetExponentiation(num1, num2, ++i);
 
